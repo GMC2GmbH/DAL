@@ -106,6 +106,7 @@ Requirements
 - requests
 - TM1 11 
 - TM1py
+- typing_extensions
 
 Optional Requirements
 =======================

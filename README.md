@@ -11,7 +11,7 @@ Install
 - DEV.yml
 - DAL.py
 
-Config the DEV.yml
+Configure the DEV.yml
 =======================
 ```yaml
 planning_analytics:
@@ -91,12 +91,11 @@ DAL has more tricks up its sleeve than a magician's hat when it comes to getting
 
 - Read data from TM1 via MDX and views as easy as possible
 - Write/Push data from outside into TM1
-- Retrieve TI processes from outside
 - Easily configurable via YAML files
 - Significantly more interfaces of source/target systems can be connected (compared to TurboIntegrator) - e.g. OData
 - Core technology extending application
 - Secure and encrypted connection via SSL; data is not transferred in plain text
-- Data transfer from cloud to cloud using the authorization scheme specified by the source and target system in each case
+- Data transfer from cloud to cloud using the authorization schema specified by the source and target system in each case
 
 Requirements
 =======================

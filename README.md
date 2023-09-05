@@ -1,9 +1,9 @@
 # Data Access Layer 
 
-Data-driven innovation through the use of the data access layer
+Data-driven innovation through the use of the Data Access Layer based on [TM1py](https://github.com/cubewise-code/tm1py) ❤️
 
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) 
-![ibm](https://img.shields.io/badge/-PlanningAnalytics-052FAD?logo=ibm&style=for-the-badge) 
+[![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://www.python.org/)
+[![ibm](https://img.shields.io/badge/-PlanningAnalytics-052FAD?logo=ibm&style=for-the-badge)](https://www.ibm.com/de-de/products/planning-analytics?utm_content=SRCWW&p1=Search&p4=43700075197142448&p5=e&gclid=CjwKCAjwo9unBhBTEiwAipC11-CQKNzBaWXDT2LYKf345cWn_zRCW87X-ShO3_hRVHAlY3eXR_iCaRoC0t8QAvD_BwE&gclsrc=aw.ds)
 
 Install
 =======================
@@ -11,7 +11,7 @@ Install
 - DEV.yml
 - DAL.py
 
-Config DEV.yaml
+Config the DEV.yml
 =======================
 ```yaml
 planning_analytics:
@@ -45,7 +45,7 @@ mdx = {
     ]
 }
 
-query = f"SELECT NON EMPTY {mdx['columns']} ON 0, NON EMPTY {mdx['rows']} ON 1 FROM [etl.data] WHERE ({','.join(mdx['where'])})"
+query = f"SELECT NON EMPTY {mdx['columns']} ON 0, NON EMPTY {mdx['rows']} ON 1 FROM [cube] WHERE ({','.join(mdx['where'])})"
 ```
 
 > Call the DAL request by MDX-Statement
@@ -89,31 +89,29 @@ Features
 
 DAL has more tricks up its sleeve than a magician's hat when it comes to getting cozy with TM1py, such as
 
-- Read data from TM1 via MDX and views as easy as possible 
-- Write/Push data from outside into TM1 
-- Retrieve TI processes from outside 
-- Easily configurable via YAML files 
-- Significantly more interfaces of source/target systems can be connected (compared to TurboIntegrator) - e.g. OData 
-- Core technology extending application 
-- Secure and encrypted connection via SSL; data is not transferred in plain text 
+- Read data from TM1 via MDX and views as easy as possible
+- Write/Push data from outside into TM1
+- Retrieve TI processes from outside
+- Easily configurable via YAML files
+- Significantly more interfaces of source/target systems can be connected (compared to TurboIntegrator) - e.g. OData
+- Core technology extending application
+- Secure and encrypted connection via SSL; data is not transferred in plain text
 - Data transfer from cloud to cloud using the authorization scheme specified by the source and target system in each case
-
 
 Requirements
 =======================
 
-- python (3.7 or higher)
-- requests
-- TM1 11 
-- TM1py
-- typing_extensions
+- [![Static Badge](https://img.shields.io/badge/Python-3.7-yellow)](https://www.python.org/)
+- [![Static Badge](https://img.shields.io/badge/TM1py-1.11.3-yellow)](https://pypi.org/project/TM1py/)
+- [![Static Badge](https://img.shields.io/badge/requests-2.31.0-yellow)](https://pypi.org/project/requests/)
+- [![Static Badge](https://img.shields.io/badge/typing_extensions-4.7.1-yellow)](https://pypi.org/project/typing-extensions/)
+- [![Static Badge](https://img.shields.io/badge/IBM_Planning_Analytics-11-blue)](https://www.ibm.com/de-de/products/planning-analytics?utm_content=SRCWW&p1=Search&p4=43700075197142448&p5=e&gclid=CjwKCAjwo9unBhBTEiwAipC11-CQKNzBaWXDT2LYKf345cWn_zRCW87X-ShO3_hRVHAlY3eXR_iCaRoC0t8QAvD_BwE&gclsrc=aw.ds)
 
 Optional Requirements
 =======================
 
-- pandas
-- requests_negotiate_sspi
-
+- [![Static Badge](https://img.shields.io/badge/pandas-2.1.0-yellow)](https://pypi.org/project/pandas/)
+- [![Static Badge](https://img.shields.io/badge/requests_negotiate_sspi-0.5.2-yellow)](https://pypi.org/project/requests-negotiate-sspi/)
 
 Issues
 =======================

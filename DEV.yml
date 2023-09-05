@@ -1,0 +1,6 @@
+planning_analytics:
+    address: localhost
+    port: 52670
+    user: admin
+    password: apple
+    ssl: False

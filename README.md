@@ -1,4 +1,4 @@
-# DAL 
+# Data Access Layer 
 
 Data-driven innovation through the use of the data access layer
 

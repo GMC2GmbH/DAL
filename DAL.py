@@ -60,10 +60,6 @@ class DataAccessLayer:
         
     def run_ti(self, name, parameters=None):
         self.tm1.run_ti(name,parameters)
-        
-    #JOD  
-    def show_all_cubes(self):
-        print(self.tm1.cubes.get_all())
 
 
 """ _PlanningAnalytics is an internal class with the purpose of establishing communication between Python and Planning Analytics """
@@ -71,7 +67,7 @@ class DataAccessLayer:
 class _PlanningAnalytics:
 
     __version__ = 'V0.1'
-    __author__ = 'Alexander Gusser'
+    __author__ = 'Alexander Gusser, Johannes Droste, Stefan Breuer'
 
     def __init__(self, config):
         # get and set config!

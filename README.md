@@ -11,7 +11,7 @@ Install
 - DEV.yml
 - DAL.py
 
-Config
+Config DEV.yaml
 =======================
 ```yaml
 planning_analytics:
@@ -48,7 +48,7 @@ mdx = {
 query = f"SELECT NON EMPTY {mdx['columns']} ON 0, NON EMPTY {mdx['rows']} ON 1 FROM [etl.data] WHERE ({','.join(mdx['where'])})"
 ```
 
-> Call the Data Access Layer PULL request by MDX-Statement
+> Call the DAL request by MDX-Statement
 ``` python
 data_raw = DAL.load_data_by_mdx(query)
 ```
@@ -56,12 +56,27 @@ data_raw = DAL.load_data_by_mdx(query)
 Helper
 =======================
 
-> convert pandas multi-index to flat df
+> convert pandas multi-index to standard pandas.DataFrame
 ``` python
 data = data_raw.dropna()
 data = data.unstack()
 data = data.reset_index()
 data.columns = data.columns.map(''.join)
+```
+
+> Call the DAL request by View
+``` python
+data_raw = DAL.load_data_by_view(query)
+```
+
+>  Write dataframe
+``` python
+DAL.write_dataframe(cube="cube",dataframe=data)
+```
+
+>  Write cellset
+``` python
+DAL.write_cellset(cube="cube",cellset=data)
 ```
 
 > Run TI

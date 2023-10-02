@@ -83,7 +83,7 @@ class _PlanningAnalytics:
         Returns:
             TM1py.Services: to establish the connection!
         """
-        return TM1Service(address=self.config.address, port=self.config.port, user=self.config.user, password=self.config.password, ssl=self.config.ssl)
+        return TM1Service(**dict(self.config._asdict()))
 
     def check_connection(self):
         try:

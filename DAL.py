@@ -1,11 +1,7 @@
-from ast import Try
-from typing_extensions import Self
 import yaml
-import json
 from TM1py.Services import TM1Service
 from TM1py.Utils import Utils
 from collections import namedtuple
-from typing import overload
 import os
 import logging
 
@@ -30,11 +26,14 @@ class DataAccessLayer:
         """load cube data by mdx statement
 
         Args:
-            mdx (string): the mdx statement should contain all the needed parts -> SELECT [...] on ROWS, [...] on COLUMNS, FROM [...] WHERE([..]).
-            raw (bool, optional): Determine return value neither as raw cellset data or as pandas.DataFrame.
+            mdx (string): the mdx statement should contain all the needed parts
+            -> SELECT [...] on ROWS, [...] on COLUMNS, FROM [...] WHERE([..]).
+            raw (bool, optional): Determine return value neither as raw cellset
+            data or as pandas.DataFrame.
 
         Returns:
-            pandas.DataFrame: Two-dimensional, size-mutable, potentially heterogeneous tabular data.
+            pandas.DataFrame: Two-dimensional, size-mutable, potentially
+            heterogeneous tabular data.
         """
 
         return self.tm1.data_by_mdx(mdx, raw)
@@ -47,22 +46,27 @@ class DataAccessLayer:
             view (string): name of the cube view
 
         Returns:
-            pandas.DataFrame: Two-dimensional, size-mutable, potentially heterogeneous tabular data.
+            pandas.DataFrame: Two-dimensional, size-mutable, potentially
+            heterogeneous tabular data.
         """
 
         return self.tm1.data_by_view(cube, view, raw)
 
     def write_cellset(self, cube, cellset):
         self.tm1.write_cellset(cube, cellset)
-        
+
     def write_dataframe(self, cube, dataframe):
         self.tm1.write_dataframe(cube, dataframe)
-        
+
     def run_ti(self, name, parameters=None):
-        self.tm1.run_ti(name,parameters)
+        self.tm1.run_ti(name, parameters)
 
 
-""" _PlanningAnalytics is an internal class with the purpose of establishing communication between Python and Planning Analytics """
+"""
+_PlanningAnalytics is an internal class with the purpose of establishing
+communication between Python and Planning Analytics
+"""
+
 
 class _PlanningAnalytics:
 
@@ -90,7 +94,8 @@ class _PlanningAnalytics:
             with self._get_service() as tm1:
                 server = tm1.server.get_configuration()
                 # log
-                logging.info(f'connection {server["ServerName"]} [V{server["ProductVersion"]}] is established!')
+                logging.info(
+                    f'connection {server["ServerName"]} [V{server["ProductVersion"]}] is established!')
         except Exception as e:
             logging.error(f'error: {str(e)}')
 
@@ -104,7 +109,7 @@ class _PlanningAnalytics:
             # Get data from cube through MDX
             data = tm1.cubes.cells.execute_mdx(mdx)
 
-            if(raw):
+            if (raw):
                 # return raw cellset data
                 return data
             else:
@@ -116,7 +121,7 @@ class _PlanningAnalytics:
             # Get data from cube through View
             data = tm1.cubes.cells.execute_view(cube, view, private=False)
 
-            if(raw):
+            if (raw):
                 # return raw cellset data
                 return data
             else:
@@ -125,31 +130,34 @@ class _PlanningAnalytics:
 
     def write_dataframe(self, cube, dataframe):
         try:
-            with self._get_service() as tm1: 
+            with self._get_service() as tm1:
                 # write new values
-                tm1.cubes.cells.write_dataframe(cube_name=cube, data=dataframe, use_ti=True)
+                tm1.cubes.cells.write_dataframe(
+                    cube_name=cube, data=dataframe, use_ti=True)
                 # log
                 logging.info(f'dataframe in {cube} are stored!')
         except Exception as e:
             logging.error(f'error: {str(e)}')
-            
+
     def write_cellset(self, cube, cellset):
         try:
             with self._get_service() as tm1:
                 # write new values
-                tm1.cubes.cells.write_values(cube_name=cube, cellset_as_dict=cellset)
+                tm1.cubes.cells.write_values(
+                    cube_name=cube, cellset_as_dict=cellset)
                 # log
                 logging.info(f'cellset in {cube} are stored!')
         except Exception as e:
             logging.error(f'error: {str(e)}')
-    
-    def run_ti(self, name,parameters=None):
+
+    def run_ti(self, name, parameters=None):
         try:
             with self._get_service() as tm1:
-                #get process
-                process =  tm1.processes.get(name_process=name)
+                # get process
+                process = tm1.processes.get(name_process=name)
                 # write new values
-                sucess, status, error_log_file = tm1.processes.execute_process_with_return(process,**parameters)
+                sucess, status, error_log_file = tm1.processes.execute_process_with_return(
+                    process, **parameters)
                 # log
                 logging.info(f'process {name} executed! {sucess} | {status}')
         except Exception as e:
